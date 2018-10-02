@@ -6,7 +6,8 @@ const initialState = {
   username: "",
   firstName: "",
   profile: {},
-  followers: []
+  followers: [],
+  repos: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -33,10 +34,15 @@ const rootReducer = (state = initialState, action) => {
         loggedIn: false,
         profile: {}
       }
-    case "FETCH_FOLLOWERS":
+    case "SAVE_FOLLOWERS":
       return {
         ...state,
         followers: action.payload
+      }
+    case "SAVE_REPOS":
+      return {
+        ...state,
+        repos: action.payload
       }
     default:
       return state;

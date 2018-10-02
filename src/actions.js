@@ -26,18 +26,26 @@ export const handleLogout = () => ({
 });
 
 const saveFollowers = followers => ({
-  type: 'FETCH_FOLLOWERS',
+  type: 'SAVE_FOLLOWERS',
   payload: followers
 });
 
-const getGithubFollowing = url => fetch(url);
+const getGithubApi = url => fetch(url);
 
 export const fetchFollowers = followersUrl => dispatch => {
-  getGithubFollowing(followersUrl)
+  getGithubApi(followersUrl)
     .then(res => res.json())
     .then(followers => dispatch(saveFollowers(followers)));
 }
 
+const saveRepos = repos => ({
+  type: 'SAVE_REPOS',
+  payload: repos
+});
 
-
+export const fetchRepos= reposUrl => dispatch => {
+  getGithubApi(reposUrl)
+    .then(res => res.json())
+    .then(repos => dispatch(saveRepos(repos)));
+}
 

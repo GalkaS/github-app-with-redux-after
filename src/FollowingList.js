@@ -1,15 +1,17 @@
 import React from "react";
+import Follower from "./Follower"
 
-export default ({ followers }) => (
+
+const FollowingList = ({ followers }) => (
   <React.Fragment>
     <h2>My followers</h2>
     <ul>
-      {followers.map((follower, i) => (
-        <li key={`follower-${i}`}>
-          <img src={follower.avatar_url} alt={`${follower.login}'s avatar`} />
-          <p>{follower.login}</p>
-        </li>
+      {followers.map((follower) => (
+        <Follower avatarUrl={follower.avatar_url} username={follower.login} />
       ))}
     </ul>
   </React.Fragment>
 );
+
+
+export default FollowingList;

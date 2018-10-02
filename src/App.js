@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Login from "./Login.js";
 import Profile from "./Profile.js";
-import { handleChangeUsername, handleChangeFirstName, login, handleLogout, fetchFollowers } from "./actions";
+import { handleChangeUsername, handleChangeFirstName, login, handleLogout, fetchFollowers, fetchRepos } from "./actions";
 
 class App extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.loggedIn !== this.props.loggedIn) {
       if (this.props.loggedIn) {
         this.props.fetchFollowers(this.props.profile.followers_url);
+        this.props.fetchRepos(this.props.profile.repos_url);
       }
     }
   }
@@ -21,6 +22,7 @@ class App extends Component {
           <Profile
             {...this.props.profile}
             followers={this.props.followers}
+            repos={this.props.repos}
             handleLogOut={this.props.handleLogOut}
           />
         ) : (
@@ -47,6 +49,7 @@ const mapDispatchToProps = {
   login,
   handleLogout,
   fetchFollowers,
+  fetchRepos,
 };
 
 export default connect(
